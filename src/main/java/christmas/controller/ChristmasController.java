@@ -11,11 +11,9 @@ public class ChristmasController {
 		return order;
 	}
 	private static void playerOrderItem(Order order) {
-		OutputView.printOrderMenuInformation();
 		
 	}
-	
-	
+
 	void run() {
 		Order order = createPlayerOrder();
 		
