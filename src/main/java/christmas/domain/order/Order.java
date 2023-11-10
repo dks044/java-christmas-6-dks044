@@ -1,6 +1,7 @@
 package christmas.domain.order;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Order {
@@ -12,9 +13,9 @@ public class Order {
 	
 	private boolean isGiftIncluded;
 	
-	private Map<String,Integer> rewardsList = new HashMap<>();
+	private Map<String,Integer> rewardsList = new LinkedHashMap<>();
 	
-	Order(int visitDay){
+	public Order(int visitDay){
 		this.visitDay = visitDay;
 		this.rewardsList.put("크리스마스 디데이 할인:", 0);
 		this.rewardsList.put("평일 할인:", 0);
