@@ -13,7 +13,7 @@ public class ValidateTest {
 	@Test
 	void checkNumberTest() {
 		assertDoesNotThrow(()->Validate.checkNumber("123"));
-		assertThrows(IllegalArgumentException.class, () -> Validate.checkNumber("저는_숫자가_아닙니다."));
+		assertThrows(IllegalArgumentException.class, () -> Validate.checkNumber("입력데이터는_숫자가_아닙니다."));
 	}
 	
 }

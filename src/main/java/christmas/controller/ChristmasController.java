@@ -10,7 +10,7 @@ public class ChristmasController {
 		Order order = new Order(InputView.promptForVisitDate());
 		return order;
 	}
-	private static void playerOrderItem(Order order) {
+	private static void appendOrderMenu(Order order) {
 		
 	}
 

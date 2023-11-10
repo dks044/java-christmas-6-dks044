@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class Util {
 	
-	//TODO: 오타주의
 	private static final Map<String, String> APPETIZER 
 	= Map.of("양송이수프", "MUSHROOM_SOUP","타파스","TAPAS","시저샐러드","CAESAR_SALAD");
 	

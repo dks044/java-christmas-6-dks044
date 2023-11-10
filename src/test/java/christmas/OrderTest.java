@@ -14,10 +14,10 @@ public class OrderTest {
 	@Test
 	void 생성자테스트() {
 		Order order = new Order(1);
-		int index =0;
 		String[] rewardList = {"크리스마스 디데이 할인:","평일 할인:","특별 할인:","증정 이벤트:"};
+		int rewardListIndex =0;
 		for(Map.Entry<String, Integer> entry : order.getRewardsList().entrySet()) {
-			assertEquals(entry.getKey(), rewardList[index++]);
+			assertEquals(entry.getKey(), rewardList[rewardListIndex++]);
 		}
 	}
 	
