@@ -16,4 +16,12 @@ public class ValidateTest {
 		assertThrows(IllegalArgumentException.class, () -> Validate.checkNumber("입력데이터는_숫자가_아닙니다."));
 	}
 	
+	@DisplayName("메뉴에 포함되지 않다면 오류를 발생하는 유효성메소드 테스트")
+	@Test
+	void checkEqualsMenuTest() {
+		String menuEqualsTestData = "유효성테스트-1,우테코-2,메뉴에없는음식-3";
+		assertThrows(IllegalArgumentException.class, ()->Validate.checkEqualsMenu(menuEqualsTestData));
+	}
+	
+	
 }
