@@ -1,5 +1,7 @@
 package christmas.domain.menu;
 
+import static org.assertj.core.api.Assertions.setExtractBareNamePropertyMethods;
+
 public enum Appetizer {
 	MUSHROOM_SOUP(6000),
 	TAPAS(5500),
@@ -14,4 +16,5 @@ public enum Appetizer {
 	public int getPrice() {
 		return price;
 	}
+	
 }
