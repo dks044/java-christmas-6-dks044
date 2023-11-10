@@ -10,6 +10,7 @@ public class InputView {
 	    	String inputData = Console.readLine();
 	    	try {
 	    		Validate.checkNumber(inputData);
+	    		Validate.checkNumberRange(inputData);
 				return Integer.parseInt(inputData);
 			} catch (IllegalArgumentException error) {
 				System.out.println(error.getMessage());
