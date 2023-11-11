@@ -29,7 +29,7 @@ public class Util {
 	
 	public static String parseInputDataToEngName(String inputData) {
 		for(Map.Entry<String, String> entry : getTotalMenu().entrySet()) {
-			if(entry.getKey().contains(inputData)) {
+			if(inputData.contains(entry.getKey())) {
 				inputData = inputData.replaceAll(entry.getKey(), entry.getValue());
 			}
 		}
