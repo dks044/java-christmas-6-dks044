@@ -26,6 +26,8 @@ public class InputView {
 				inputData = Util.parseInputDataToEngName(inputData);
 				Validate.checkEqualsMenu(inputData);
 				Validate.checkInputDataPattern(inputData);
+				Validate.checkOnlyBeverage(inputData);
+				Validate.checkOrderCountRange(inputData);
 				return inputData;
 			} catch (IllegalArgumentException error) {
 				System.out.println(error.getMessage());

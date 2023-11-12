@@ -26,6 +26,20 @@ public class Util {
 		totalMenu.putAll(MAIN);
 		return totalMenu;
 	}
+	public static Map<String,String> getNonBeverageMenu(){
+		Map<String,String> nonBeverageMenu = new HashMap<>();
+		nonBeverageMenu.putAll(APPETIZER);
+		nonBeverageMenu.putAll(DESSERT);
+		nonBeverageMenu.putAll(MAIN);
+		return nonBeverageMenu;
+	}
+	public static Map<String,String> getBeverageMenu(){
+		Map<String,String> beverageMenu = new HashMap<>();
+		beverageMenu.putAll(BEVERAGE);
+		return beverageMenu;
+	}
+	
+	
 	
 	public static String parseInputDataToEngName(String inputData) {
 		for(Map.Entry<String, String> entry : getTotalMenu().entrySet()) {
