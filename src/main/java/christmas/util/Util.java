@@ -1,6 +1,8 @@
 package christmas.util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Util {
@@ -38,8 +40,11 @@ public class Util {
 		beverageMenu.putAll(BEVERAGE);
 		return beverageMenu;
 	}
-	
-	
+	public static List<String> getMenuEngNameList(){
+		List<String> memuEngNameList = new ArrayList<>();
+		for(String value : getTotalMenu().values()) memuEngNameList.add(value);
+		return memuEngNameList;
+	}
 	
 	public static String parseInputDataToEngName(String inputData) {
 		for(Map.Entry<String, String> entry : getTotalMenu().entrySet()) {

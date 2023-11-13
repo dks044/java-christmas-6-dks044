@@ -29,9 +29,9 @@ public class Validate {
 	}
 	public static void checkEqualsMenu(String inputData) {
 		String[] inputDatas = inputData.split(",");
-		int inputDatasIndex = 0;
-		for(Map.Entry<String, String> entry : Util.getTotalMenu().entrySet()) {
-			if(!entry.getValue().equals(inputDatasIndex++)) throw new IllegalArgumentException(IS_NOT_EQUALS_MENU);  
+		for(int i=0;i<inputDatas.length;i++) inputDatas[i] = inputDatas[i].replaceAll("[\\d-]", "");
+		for(String data : inputDatas) {
+			if(!Util.getMenuEngNameList().contains(data)) throw new IllegalArgumentException(IS_NOT_EQUALS_MENU);
 		}
 	}
 	public static void checkInputDataPattern(String inputData) {
