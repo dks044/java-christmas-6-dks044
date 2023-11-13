@@ -78,6 +78,19 @@ public class OrderService {
 				if(DESSERT_ITEM_LIST.contains(entry.getKey())) eventDiscountMoney += DISCOUNT_MONEY * entry.getValue();
 			}
 		}
+		rewardList.put("평일 할인:",eventDiscountMoney);
+		order.setRewardsList(rewardList);
+	}
+	
+	public static void weekendEvent(Order order) {
+		int eventDiscountMoney = 0;
+		Map<String,Integer> orderMenu = order.getOrderMenu();
+		Map<String,Integer> rewardList = order.getRewardsList();
+		if(WEEKEND.contains(order.getVisitDay())) {
+			for(Map.Entry<String, Integer> entry : orderMenu.entrySet()) {
+				if(MAIN_ITEM_LIST.contains(entry.getKey())) eventDiscountMoney += DISCOUNT_MONEY * entry.getValue();
+			}
+		}
 		rewardList.put("주말 할인:",eventDiscountMoney);
 		order.setRewardsList(rewardList);
 	}
