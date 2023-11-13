@@ -60,4 +60,22 @@ public class OutputView {
 		}
 	}
 	
+	public static void printOrderAmountPostDiscount(Order order) {
+		int orderAmountPostDiscount = 0;
+		System.out.println();
+		System.out.println("<할인 후 예상 결제 금액>");
+		if(OrderService.isDiscountEventEmpty(order)) orderAmountPostDiscount = order.getOrderMoney();
+		if(!OrderService.isDiscountEventEmpty(order)) {
+			orderAmountPostDiscount = order.getOrderMoney() - OrderService.getTotalBenefitsAmount(order);
+		}
+		NumberFormat numberFormat = NumberFormat.getInstance();
+		System.out.println(numberFormat.format(orderAmountPostDiscount)+"원");
+	}
+	
+	public static void printEventBadge(Order order) {
+		System.out.println();
+		System.out.println("<12월 이벤트 배지>");
+		System.out.println(OrderService.getEventBadgeForPurchaseAmount(order));
+	}
+	
 }

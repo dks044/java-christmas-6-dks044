@@ -24,6 +24,8 @@ public class ChristmasController {
 		OutputView.printOrderAmountPreDiscount(order);
 		OutputView.printGiftEventStatus(order);
 		OutputView.printEventBenefitsDetails(order);
+		OutputView.printTotalBenefitsAmount(order);
+		OutputView.printOrderAmountPostDiscount(order);
 	}
 	
 	void run() {

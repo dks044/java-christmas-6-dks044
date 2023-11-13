@@ -24,6 +24,9 @@ public class OrderService {
 	private static final int DISCOUNT_MONEY = 2023;
 	private static final int GIFT_EVENT_MINIMUM_ORDER_AMOUNT = 120000;
 	private static final int MINIMUM_PURCHASE_FOR_DISCOUNT = 10000;
+	private static final int EVENT_BADGE_STAR = 5000;
+	private static final int EVENT_BADGE_TREE = 10000;
+	private static final int EVENT_BADGE_SANTA = 20000;
 	
     static {
         allMenuItems.addAll(Arrays.asList(Main.values()));
@@ -135,6 +138,15 @@ public class OrderService {
 			totalBenefitAmount += entry.getValue();
 		}
 		return totalBenefitAmount;
+	}
+	
+	public static String getEventBadgeForPurchaseAmount(Order order) {
+		String eventBadge ="없음";
+		int totalBenefitsAmount = OrderService.getTotalBenefitsAmount(order);
+		if(totalBenefitsAmount >= EVENT_BADGE_STAR && totalBenefitsAmount < EVENT_BADGE_TREE) eventBadge ="별";
+		if(totalBenefitsAmount >= EVENT_BADGE_TREE && totalBenefitsAmount < EVENT_BADGE_SANTA) eventBadge ="트리";
+		if(totalBenefitsAmount >= EVENT_BADGE_SANTA) eventBadge ="산타";
+		return eventBadge;
 	}
 	
 }
