@@ -95,4 +95,13 @@ public class OrderService {
 		order.setRewardsList(rewardList);
 	}
 	
+	public static void specialDayEvent(Order order) {
+		Map<String,Integer> rewardList = order.getRewardsList();
+		if(SPECIAL_DAY.contains(order.getVisitDay())) {
+			rewardList.put("특별 할인:", 1000);
+		}
+		order.setRewardsList(rewardList);
+	}
+	
+	
 }
