@@ -19,13 +19,7 @@ public class ChristmasController {
 		OrderService.totalDiscountEvent(order);
 	}
 	private static void showOrderDetails(Order order) {
-		OutputView.printEventPreviewForDate(order);
-		OutputView.printOrderMenuDetail(order);
-		OutputView.printOrderAmountPreDiscount(order);
-		OutputView.printGiftEventStatus(order);
-		OutputView.printEventBenefitsDetails(order);
-		OutputView.printTotalBenefitsAmount(order);
-		OutputView.printOrderAmountPostDiscount(order);
+		OutputView.printOrderDetail(order);
 	}
 	
 	void run() {
