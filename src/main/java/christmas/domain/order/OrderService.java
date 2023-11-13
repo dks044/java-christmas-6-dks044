@@ -22,7 +22,8 @@ public class OrderService {
 	private static final List<String> DESSERT_ITEM_LIST = List.of("CHOCOLATE_CAKE","ICE_CREAM");
 	private static final List<String> MAIN_ITEM_LIST = List.of("T_BONE_STEAK","BBQ_RIBS","SEAFOOD_PASTA","CHRISTMAS_PASTA");
 	private static final int DISCOUNT_MONEY = 2023;
-	public static final int GIFT_EVENT_MINIMUM_ORDER_AMOUNT = 120000;
+	private static final int GIFT_EVENT_MINIMUM_ORDER_AMOUNT = 120000;
+	private static final int MINIMUM_PURCHASE_FOR_DISCOUNT = 10000;
 	
     static {
         allMenuItems.addAll(Arrays.asList(Main.values()));
@@ -69,7 +70,7 @@ public class OrderService {
 		}
 	}
 	
-	public static void weekdayEvent(Order order) {
+	private static void weekdayEvent(Order order) {
 		int eventDiscountMoney = 0;
 		Map<String,Integer> orderMenu = order.getOrderMenu();
 		Map<String,Integer> rewardList = order.getRewardsList();
@@ -82,7 +83,7 @@ public class OrderService {
 		order.setRewardsList(rewardList);
 	}
 	
-	public static void weekendEvent(Order order) {
+	private static void weekendEvent(Order order) {
 		int eventDiscountMoney = 0;
 		Map<String,Integer> orderMenu = order.getOrderMenu();
 		Map<String,Integer> rewardList = order.getRewardsList();
@@ -95,19 +96,29 @@ public class OrderService {
 		order.setRewardsList(rewardList);
 	}
 	
-	public static void specialDayEvent(Order order) {
+	private static void specialDayEvent(Order order) {
 		Map<String,Integer> rewardList = order.getRewardsList();
 		if(SPECIAL_DAY.contains(order.getVisitDay())) {
 			rewardList.put("특별 할인:", 1000);
 		}
 		order.setRewardsList(rewardList);
 	}
-	public static void giftEvent(Order order) {
+	private static void giftEvent(Order order) {
 		Map<String,Integer> rewardList = order.getRewardsList();
 		if(order.getOrderMoney() >= GIFT_EVENT_MINIMUM_ORDER_AMOUNT) {
 			rewardList.put("증정 이벤트:", 25000);
 		}
 		order.setRewardsList(rewardList);
+	}
+	
+	public static void totalDiscountEvent(Order order) {
+		if(order.getOrderMoney()>=MINIMUM_PURCHASE_FOR_DISCOUNT) {
+			OrderService.chrismasDayEvent(order);
+			OrderService.weekdayEvent(order);
+			OrderService.weekendEvent(order);
+			OrderService.specialDayEvent(order);
+			OrderService.giftEvent(order);
+		}
 	}
 	
 }
