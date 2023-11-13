@@ -8,6 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import christmas.domain.order.Order;
+import christmas.domain.order.OrderService;
+import christmas.util.Util;
 
 public class OrderTest {
 	@DisplayName("order 객체가 생성될떄, rewardList 인스턴스변수(map)이 제대로 자동 할당 되는지 검사한다.")
@@ -20,5 +22,17 @@ public class OrderTest {
 			assertEquals(entry.getKey(), rewardList[rewardListIndex++]);
 		}
 	}
+	
+	@DisplayName("문자열을 받고, 주문메뉴가 제대로 할당되는지 검사한다.")
+	@Test
+	void 주문메뉴생성테스트() {
+		Order order = new Order(1);
+		String normalData = Util.parseInputDataToEngName("양송이수프-1,타파스-1,아이스크림-1,레드와인-1,티본스테이크-1");
+		OrderService.appendOrderMenu(order, normalData);
+		for(Map.Entry<String, Integer> entry : order.getOrderMenu().entrySet()) {
+			System.out.println(entry.getKey()+" "+entry.getValue());
+		}
+	}
+	
 	
 }

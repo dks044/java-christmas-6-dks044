@@ -21,4 +21,7 @@ public class OrderService {
 		order.setOrderMenu(appendOrderMenu);
 	}
 	
+	//TODO: 메뉴에 따른 총주문금액 구현
+	
+	
 }
