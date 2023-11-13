@@ -22,6 +22,7 @@ public class OrderService {
 	private static final List<String> DESSERT_ITEM_LIST = List.of("CHOCOLATE_CAKE","ICE_CREAM");
 	private static final List<String> MAIN_ITEM_LIST = List.of("T_BONE_STEAK","BBQ_RIBS","SEAFOOD_PASTA","CHRISTMAS_PASTA");
 	private static final int DISCOUNT_MONEY = 2023;
+	public static final int GIFT_EVENT_MINIMUM_ORDER_AMOUNT = 120000;
 	
     static {
         allMenuItems.addAll(Arrays.asList(Main.values()));
@@ -67,7 +68,6 @@ public class OrderService {
 			order.setRewardsList(rewardList);
 		}
 	}
-	//TODO: 평일할인(디저트 메뉴당 1개할인), 주말할인(메인메뉴당 1개할인), 특별할인(특정날짜- 1000원할인),증정 구현
 	
 	public static void weekdayEvent(Order order) {
 		int eventDiscountMoney = 0;
@@ -102,6 +102,12 @@ public class OrderService {
 		}
 		order.setRewardsList(rewardList);
 	}
-	
+	public static void giftEvent(Order order) {
+		Map<String,Integer> rewardList = order.getRewardsList();
+		if(order.getOrderMoney() >= GIFT_EVENT_MINIMUM_ORDER_AMOUNT) {
+			rewardList.put("증정 이벤트:", 25000);
+		}
+		order.setRewardsList(rewardList);
+	}
 	
 }
