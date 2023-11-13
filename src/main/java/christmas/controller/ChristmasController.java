@@ -18,9 +18,13 @@ public class ChristmasController {
 		order.setOrderMoney(OrderService.getTotalOrderMoney(order));
 		OrderService.totalDiscountEvent(order);
 	}
-
+	private static void showOrderDetails(Order order) {
+		OutputView.printEventPreviewForDate(order);
+	}
+	
 	void run() {
 		Order order = createPlayerOrder();
-		
+		submitOrder(order);
+		showOrderDetails(order);
 	}
 }
