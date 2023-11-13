@@ -41,5 +41,13 @@ public class OrderTest {
 	    assertEquals(expectedMenu, order.getOrderMenu(), "주문 메뉴가 정확히 할당되지 않았습니다.");
 	}
 	
-	
+	@DisplayName("문자열을 받고, 주문메뉴를 할당하고, 그에 따른 총주문금액을 계산한다.")
+	@Test
+	void 총주문금액계산테스트() {
+	    Order order = new Order(1);
+	    String normalData = Util.parseInputDataToEngName("양송이수프-1,타파스-1,아이스크림-1,레드와인-1,티본스테이크-1");
+	    OrderService.appendOrderMenu(order, normalData);
+	    int collectTotalOrderMoney = 131500;
+	    assertEquals(collectTotalOrderMoney, OrderService.getTotalOrderMoney(order));
+	}
 }
