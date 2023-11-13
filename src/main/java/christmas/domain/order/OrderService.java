@@ -39,7 +39,7 @@ public class OrderService {
 		order.setOrderMenu(appendOrderMenu);
 	}
 	
-	//TODO: 테스트 코드 구현
+	
 	public static int getTotalOrderMoney(Order order) {
 		int totalOrderMoney =0;
 		for(Map.Entry<String, Integer> entry : order.getOrderMenu().entrySet()) {
