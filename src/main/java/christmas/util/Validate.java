@@ -1,5 +1,6 @@
 package christmas.util;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -41,21 +42,20 @@ public class Validate {
         if(!matcher.matches()) throw new  IllegalArgumentException(IS_NOT_STRING_PATTERN);
 	}
 	
-	//TODO: 테스트코드 구현
 	public static void checkOnlyBeverage(String inputData) {
-		String[] inputDatas = inputData.split(",");
-		for(int i=0;i<inputDatas.length;i++) inputDatas[i] = inputDatas[i].replaceAll("[\\d-]", "");
-		int inputDatasIndex = 0;
-		int beverageCount = 0;
-		int totalMenuCount =0;
-		for(Map.Entry<String, String> entry : Util.getBeverageMenu().entrySet()) {
-			if(entry.getValue().equals(inputDatas[inputDatasIndex++])) beverageCount++;
-		}
-		inputDatasIndex = 0;
-		for(Map.Entry<String, String> entry : Util.getNonBeverageMenu().entrySet()) {
-			if(entry.getValue().equals(inputDatas[inputDatasIndex++])) totalMenuCount++;
-		}
-		if(beverageCount>0 && totalMenuCount==0) throw new  IllegalArgumentException(NOT_ONLY_BEVERAGE);
+		String[] inputDatas = Arrays.stream(inputData.split(","))
+                .map(s -> s.replaceAll("[\\d-]", ""))
+                .toArray(String[]::new);
+
+		long beverageCount = Arrays.stream(inputDatas)
+		               .filter(s -> Util.getBeverageMenu().containsValue(s))
+		               .count();
+		
+		long totalMenuCount = Arrays.stream(inputDatas)
+		                .filter(s -> Util.getNonBeverageMenu().containsValue(s))
+		                .count();
+		
+		if (beverageCount > 0 && totalMenuCount == 0) throw new IllegalArgumentException(NOT_ONLY_BEVERAGE);
 	}
 	
 	//TODO: 테스트코드 구현

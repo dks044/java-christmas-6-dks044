@@ -23,16 +23,19 @@ public class ValidateTest {
 	@DisplayName("메뉴에 포함되지 않다면 오류를 발생하는 유효성메소드 테스트")
 	@Test
 	void checkEqualsMenuTest() {
-		
 		String menuNotEqualsTestData = Util.parseInputDataToEngName("유효성테스트-1,우테코-2,메뉴에없는음식-3");
 		String menuEqualsTestData =Util.parseInputDataToEngName("양송이수프-1,타파스-1,아이스크림-1,레드와인-1,티본스테이크-1");
 		assertThrows(IllegalArgumentException.class,() -> Validate.checkEqualsMenu(menuNotEqualsTestData));
 		assertDoesNotThrow(() -> Validate.checkEqualsMenu(menuEqualsTestData));
-		
 	}
-
 	
+	@DisplayName("메뉴에 음료만 포함되있다면 오류를 발생한다.")
+	@Test
 	void checkOnlyBeverageTest() {
+		String onlyBeverageData = Util.parseInputDataToEngName("제로콜라-1,레드와인-1,샴페인-1");
+		String normalMenuData =Util.parseInputDataToEngName("양송이수프-1,타파스-1,아이스크림-1,레드와인-1,티본스테이크-1");
+		assertThrows(IllegalArgumentException.class, ()->Validate.checkOnlyBeverage(onlyBeverageData));
+		assertDoesNotThrow(()->Validate.checkOnlyBeverage(normalMenuData));
 		
 	}
 }
