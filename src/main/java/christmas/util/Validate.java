@@ -44,14 +44,16 @@ public class Validate {
 	//TODO: 테스트코드 구현
 	public static void checkOnlyBeverage(String inputData) {
 		String[] inputDatas = inputData.split(",");
+		for(int i=0;i<inputDatas.length;i++) inputDatas[i] = inputDatas[i].replaceAll("[\\d-]", "");
 		int inputDatasIndex = 0;
 		int beverageCount = 0;
 		int totalMenuCount =0;
 		for(Map.Entry<String, String> entry : Util.getBeverageMenu().entrySet()) {
-			if(entry.getValue().equals(inputDatasIndex++)) beverageCount++;
+			if(entry.getValue().equals(inputDatas[inputDatasIndex++])) beverageCount++;
 		}
+		inputDatasIndex = 0;
 		for(Map.Entry<String, String> entry : Util.getNonBeverageMenu().entrySet()) {
-			if(entry.getValue().equals(inputDatasIndex++)) totalMenuCount++;
+			if(entry.getValue().equals(inputDatas[inputDatasIndex++])) totalMenuCount++;
 		}
 		if(beverageCount>0 && totalMenuCount==0) throw new  IllegalArgumentException(NOT_ONLY_BEVERAGE);
 	}
