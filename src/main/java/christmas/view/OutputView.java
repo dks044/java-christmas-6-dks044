@@ -30,9 +30,13 @@ public class OutputView {
 		NumberFormat numberFormat = NumberFormat.getInstance();
 		String orderMoney = numberFormat.format(order.getOrderMoney());
 		System.out.println(orderMoney+"원");
-		
 	}
 	
-	
+	public static void printGiftEventStatus(Order order) {
+		System.out.println();
+		System.out.println("<증정 메뉴>");
+		if(order.isGiftIncluded()) System.out.println("샴페인 1개");
+		if(!order.isGiftIncluded()) System.out.println("없음");
+	}
 	
 }
