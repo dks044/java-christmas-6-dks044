@@ -15,6 +15,6 @@ public class UtilTest {
 	void parseInputDataToEngNameTest() {
 		String testData = "양송이수프-1,제로콜라-2";
 		String testDataTranslate = "MUSHROOM_SOUP-1,ZERO_COLA-2";
-		assertEquals(Util.parseInputDataToEngName(testData), testDataTranslate);
+		assertEquals(testDataTranslate, Util.parseInputDataToEngName(testData));
 	}
 }

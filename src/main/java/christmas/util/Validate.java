@@ -37,10 +37,13 @@ public class Validate {
 		}
 	}
 	public static void checkInputDataPattern(String inputData) {
-		String regex = "^[a-zA-Z0-9-]+$";
+		String[] inputDatas = inputData.split(",");
+		String regex = "^[a-zA-Z0-9-_]+$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(inputData);
-        if(!matcher.matches()) throw new  IllegalArgumentException(IS_NOT_STRING_PATTERN);
+        for(int i=0;i<inputDatas.length;i++) {
+        	Matcher matcher = pattern.matcher(inputDatas[i]);
+            if(!matcher.matches()) throw new  IllegalArgumentException(IS_NOT_STRING_PATTERN);
+        }
 	}
 	
 	public static void checkOnlyBeverage(String inputData) {
