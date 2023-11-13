@@ -109,6 +109,7 @@ public class OrderService {
 			rewardList.put("증정 이벤트:", 25000);
 		}
 		order.setRewardsList(rewardList);
+		order.setGiftIncluded(true);
 	}
 		
 	public static void totalDiscountEvent(Order order) {
