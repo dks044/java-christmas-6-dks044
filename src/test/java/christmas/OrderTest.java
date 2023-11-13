@@ -26,12 +26,19 @@ public class OrderTest {
 	@DisplayName("문자열을 받고, 주문메뉴가 제대로 할당되는지 검사한다.")
 	@Test
 	void 주문메뉴생성테스트() {
-		Order order = new Order(1);
-		String normalData = Util.parseInputDataToEngName("양송이수프-1,타파스-1,아이스크림-1,레드와인-1,티본스테이크-1");
-		OrderService.appendOrderMenu(order, normalData);
-		for(Map.Entry<String, Integer> entry : order.getOrderMenu().entrySet()) {
-			System.out.println(entry.getKey()+" "+entry.getValue());
-		}
+	    Order order = new Order(1);
+	    String normalData = Util.parseInputDataToEngName("양송이수프-1,타파스-1,아이스크림-1,레드와인-1,티본스테이크-1");
+	    OrderService.appendOrderMenu(order, normalData);
+
+	    Map<String, Integer> expectedMenu = Map.of(
+	        "MUSHROOM_SOUP", 1,
+	        "TAPAS", 1,
+	        "ICE_CREAM", 1,
+	        "RED_WINE", 1,
+	        "T_BONE_STEAK", 1
+	    );
+
+	    assertEquals(expectedMenu, order.getOrderMenu(), "주문 메뉴가 정확히 할당되지 않았습니다.");
 	}
 	
 	
