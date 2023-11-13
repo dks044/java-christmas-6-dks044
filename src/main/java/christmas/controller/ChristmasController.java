@@ -14,7 +14,7 @@ public class ChristmasController {
 	private static void submitOrder(Order order) {
 		String inputMenuData = InputView.promptForOrderMenu();
 		OrderService.appendOrderMenu(order, inputMenuData);
-		//TODO: Orderservice 클래스에서 나머지 order 인스턴스변수 관련 메소드 구현
+		order.setOrderMoney(OrderService.getTotalOrderMoney(order));
 	}
 
 	void run() {

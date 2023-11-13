@@ -14,7 +14,9 @@ import christmas.domain.menu.MenuEnumInterface;
 
 public class OrderService {
 	private static final List<MenuEnumInterface> allMenuItems = new ArrayList<>();
-
+	private static final int CHRISTMAS_DAY_EVENT_START = 1;
+	private static final int CHRISTMAS_DAY_EVENT_END = 25;
+	
     static {
         allMenuItems.addAll(Arrays.asList(Main.values()));
         allMenuItems.addAll(Arrays.asList(Dessert.values()));
@@ -49,5 +51,17 @@ public class OrderService {
 		}
 		return totalOrderMoney;
 	}
+	
+	public static void chrismasDayEvent(Order order) {
+		int visitDay = order.getVisitDay();
+		Map<String,Integer> rewardList = order.getRewardsList();
+		if(visitDay >=1 && visitDay <=25) {
+			int discountMoney = 1000 + (order.getVisitDay()-1 * 100);
+			rewardList.put("크리스마스 디데이 할인:", discountMoney);
+			order.setRewardsList(rewardList);
+		}
+	}
+	
+	
 	
 }
