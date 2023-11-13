@@ -56,7 +56,7 @@ public class OrderService {
 		int visitDay = order.getVisitDay();
 		Map<String,Integer> rewardList = order.getRewardsList();
 		if(visitDay >=1 && visitDay <=25) {
-			int discountMoney = 1000 + (order.getVisitDay()-1 * 100);
+			int discountMoney = 1000 + (order.getVisitDay()-1) * 100;
 			rewardList.put("크리스마스 디데이 할인:", discountMoney);
 			order.setRewardsList(rewardList);
 		}

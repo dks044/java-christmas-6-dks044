@@ -12,6 +12,8 @@ import christmas.domain.order.OrderService;
 import christmas.util.Util;
 
 public class OrderTest {
+	private static final int MINIMUM_PURCHASE_FOR_DISCOUNT = 10000;
+	
 	@DisplayName("order 객체가 생성될떄, rewardList 인스턴스변수(map)이 제대로 자동 할당 되는지 검사한다.")
 	@Test
 	void 생성자테스트() {
@@ -50,4 +52,18 @@ public class OrderTest {
 	    int collectTotalOrderMoney = 131500;
 	    assertEquals(collectTotalOrderMoney, OrderService.getTotalOrderMoney(order));
 	}
+	
+	@DisplayName("입력 날짜에 따른 크리스마스 디데이 할인이 적용되는지 검사한다.")
+	@Test
+	void 크리스마스디데이할인테스트() {
+		Order order = new Order(25);
+		int testCollectData = 3400;
+		String normalData = Util.parseInputDataToEngName("양송이수프-1,타파스-1,아이스크림-1,레드와인-1,티본스테이크-1");
+	    OrderService.appendOrderMenu(order, normalData);
+	    order.setOrderMoney(OrderService.getTotalOrderMoney(order));
+	    if(order.getOrderMoney() >= MINIMUM_PURCHASE_FOR_DISCOUNT) OrderService.chrismasDayEvent(order);
+	    assertEquals(testCollectData, order.getRewardsList().get("크리스마스 디데이 할인:"));
+	}
+	
+	
 }

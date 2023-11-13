@@ -6,6 +6,8 @@ import christmas.view.InputView;
 import christmas.view.OutputView;
 
 public class ChristmasController {
+	private static final int MINIMUM_PURCHASE_FOR_DISCOUNT = 10000;
+	
 	private static Order createPlayerOrder() {
 		OutputView.printWelcomeMessage();
 		Order order = new Order(InputView.promptForVisitDate());
@@ -15,6 +17,9 @@ public class ChristmasController {
 		String inputMenuData = InputView.promptForOrderMenu();
 		OrderService.appendOrderMenu(order, inputMenuData);
 		order.setOrderMoney(OrderService.getTotalOrderMoney(order));
+		if(order.getOrderMoney() >= MINIMUM_PURCHASE_FOR_DISCOUNT) {
+			
+		}
 	}
 
 	void run() {
