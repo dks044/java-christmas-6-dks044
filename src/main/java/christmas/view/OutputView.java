@@ -23,22 +23,19 @@ public class OutputView {
 	    }
 	}
 	private static void printOrderAmountPreDiscount(Order order) {
-		System.out.println();
-		System.out.println("<할인 전 총주문 금액>");
+		System.out.println("\n<할인 전 총주문 금액>");
 		NumberFormat numberFormat = NumberFormat.getInstance();
 		String orderMoney = numberFormat.format(order.getOrderMoney());
 		System.out.println(orderMoney+"원");
 	}
 	
 	private static void printGiftEventStatus(Order order) {
-		System.out.println();
-		System.out.println("<증정 메뉴>");
+		System.out.println("\n<증정 메뉴>");
 		if(order.isGiftIncluded()) System.out.println("샴페인 1개");
 		if(!order.isGiftIncluded()) System.out.println("없음");
 	}
 	private static void printEventBenefitsDetails(Order order) {
-		System.out.println();
-		System.out.println("<혜택 내역>");
+		System.out.println("\n<혜택 내역>");
 		if(!OrderService.isDiscountEventEmpty(order)) {
 			for(Map.Entry<String, Integer> entry : order.getRewardsList().entrySet()) {
 				System.out.println(entry.getKey()+" "+entry.getValue());
@@ -47,8 +44,7 @@ public class OutputView {
 		if(OrderService.isDiscountEventEmpty(order)) System.out.println("없음");
 	}
 	private static void printTotalBenefitsAmount(Order order) {
-		System.out.println();
-		System.out.println("<총혜택 금액>");
+		System.out.println("\n<총혜택 금액>");
 		if(OrderService.isDiscountEventEmpty(order)) System.out.println("0원");
 		if(!OrderService.isDiscountEventEmpty(order)) {
 			NumberFormat numberFormat = NumberFormat.getInstance();
@@ -59,8 +55,7 @@ public class OutputView {
 	
 	private static void printOrderAmountPostDiscount(Order order) {
 		int orderAmountPostDiscount = 0;
-		System.out.println();
-		System.out.println("<할인 후 예상 결제 금액>");
+		System.out.println("\n<할인 후 예상 결제 금액>");
 		if(OrderService.isDiscountEventEmpty(order)) orderAmountPostDiscount = order.getOrderMoney();
 		if(!OrderService.isDiscountEventEmpty(order)) {
 			orderAmountPostDiscount = order.getOrderMoney() - OrderService.getTotalBenefitsAmount(order);
@@ -70,8 +65,7 @@ public class OutputView {
 	}
 	
 	private static void printEventBadge(Order order) {
-		System.out.println();
-		System.out.println("<12월 이벤트 배지>");
+		System.out.println("\n<12월 이벤트 배지>");
 		System.out.println(OrderService.getEventBadgeForPurchaseAmount(order));
 	}
 	public static void printOrderDetail(Order order) {
