@@ -55,7 +55,7 @@ public class OrderService {
 	public static void chrismasDayEvent(Order order) {
 		int visitDay = order.getVisitDay();
 		Map<String,Integer> rewardList = order.getRewardsList();
-		if(visitDay >=1 && visitDay <=25) {
+		if(visitDay >=CHRISTMAS_DAY_EVENT_START && visitDay <=CHRISTMAS_DAY_EVENT_END) {
 			int discountMoney = 1000 + (order.getVisitDay()-1) * 100;
 			rewardList.put("크리스마스 디데이 할인:", discountMoney);
 			order.setRewardsList(rewardList);
