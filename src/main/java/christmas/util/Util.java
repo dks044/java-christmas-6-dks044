@@ -35,11 +35,14 @@ public class Util {
 		nonBeverageMenu.putAll(MAIN);
 		return nonBeverageMenu;
 	}
+	
+
 	public static Map<String,String> getBeverageMenu(){
 		Map<String,String> beverageMenu = new HashMap<>();
 		beverageMenu.putAll(BEVERAGE);
 		return beverageMenu;
 	}
+	
 	public static List<String> getMenuEngNameList(){
 		List<String> memuEngNameList = new ArrayList<>();
 		for(String value : getTotalMenu().values()) memuEngNameList.add(value);
