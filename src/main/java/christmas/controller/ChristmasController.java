@@ -18,7 +18,11 @@ public class ChristmasController {
 		OrderService.appendOrderMenu(order, inputMenuData);
 		order.setOrderMoney(OrderService.getTotalOrderMoney(order));
 		if(order.getOrderMoney() >= MINIMUM_PURCHASE_FOR_DISCOUNT) {
-			
+			OrderService.chrismasDayEvent(order);
+			OrderService.weekdayEvent(order);
+			OrderService.weekendEvent(order);
+			OrderService.specialDayEvent(order);
+			OrderService.giftEvent(order);
 		}
 	}
 
