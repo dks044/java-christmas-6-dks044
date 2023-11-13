@@ -70,4 +70,6 @@ public class Validate {
 		if(orderTotalCount>MAX_ORDER_LIMIT) throw new  IllegalArgumentException(ORDER_LIMIT_EXCEEDED);
 	}
 	
+	//TODO: 중복메뉴 금지 코드 구현
+	
 }

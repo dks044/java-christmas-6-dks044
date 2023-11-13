@@ -13,6 +13,8 @@ import christmas.util.Util;
 import christmas.util.Validate;
 
 public class ValidateTest {
+	private static final int MENU_ORDER_LIMIT = 20;
+	
 	@DisplayName("숫자가 아닐시에 오류를 발생하는 유효성메소드 테스트")
 	@Test
 	void checkNumberTest() {
@@ -38,4 +40,14 @@ public class ValidateTest {
 		assertDoesNotThrow(()->Validate.checkOnlyBeverage(normalMenuData));
 		
 	}
+	
+	@DisplayName("메뉴 주문이 20개 초과하면 오류를 발생한다.")
+	@Test
+	void checkOrderCountRangeTest() {
+		String maxTwentyData =Util.parseInputDataToEngName("양송이수프-5,타파스-4,아이스크림-3,레드와인-3,티본스테이크-3");
+		String overTwentyData =Util.parseInputDataToEngName("양송이수프-5,타파스-5,아이스크림-6,레드와인-5,티본스테이크-5");
+		assertThrows(IllegalArgumentException.class, ()->Validate.checkOrderCountRange(overTwentyData));
+		assertDoesNotThrow(()->Validate.checkOrderCountRange(maxTwentyData));
+	}
+	
 }
