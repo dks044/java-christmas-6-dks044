@@ -16,6 +16,7 @@ public class Validate {
 	private static final String IS_NOT_STRING_PATTERN ="[ERROR] 문자열,'-',숫자만 입력해주세요.";
 	private static final String NOT_ONLY_BEVERAGE = "[ERROR] 음료만 주문할 수 없습니다.";
 	private static final String ORDER_LIMIT_EXCEEDED ="[ERROR] 20개 초과해서 주문할 수 없습니다.";
+	private static final String NOT_UNIQUE_ORDER_ITEM = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
 	
 	public static void checkNumber(String inputData) {
 		for(char word : inputData.toCharArray()) {
@@ -57,8 +58,7 @@ public class Validate {
 		
 		if (beverageCount > 0 && totalMenuCount == 0) throw new IllegalArgumentException(NOT_ONLY_BEVERAGE);
 	}
-	
-	//TODO: 테스트코드 구현
+
 	public static void checkOrderCountRange(String inputData) {
 		int orderTotalCount =0;
 		String[] inputDatas = inputData.split(",");
@@ -70,6 +70,12 @@ public class Validate {
 		if(orderTotalCount>MAX_ORDER_LIMIT) throw new  IllegalArgumentException(ORDER_LIMIT_EXCEEDED);
 	}
 	
-	//TODO: 중복메뉴 금지 코드 구현
-	
+	//TODO: 테스트코드 구현
+	public static void checkUniqueOrderItem(String inputData) {
+		String[] inputDatas = Arrays.stream(inputData.split(","))
+                .map(s -> s.replaceAll("[\\d-]", ""))
+                .toArray(String[]::new);
+		long inputDatasDistinctCount = Arrays.stream(inputDatas).distinct().count();
+		if(inputDatas.length != inputDatasDistinctCount) throw new  IllegalArgumentException(NOT_UNIQUE_ORDER_ITEM);
+	}
 }

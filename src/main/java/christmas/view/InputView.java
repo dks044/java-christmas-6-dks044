@@ -28,6 +28,7 @@ public class InputView {
 				Validate.checkInputDataPattern(inputData);
 				Validate.checkOnlyBeverage(inputData);
 				Validate.checkOrderCountRange(inputData);
+				Validate.checkUniqueOrderItem(inputData);
 				return inputData;
 			} catch (IllegalArgumentException error) {
 				System.out.println(error.getMessage());
