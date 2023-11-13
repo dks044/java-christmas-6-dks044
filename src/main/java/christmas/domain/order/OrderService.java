@@ -121,5 +121,11 @@ public class OrderService {
 			OrderService.giftEvent(order);
 		}
 	}
-	
+	public static boolean isDiscountEventEmpty(Order order) {
+		Map<String,Integer> rewardsList = order.getRewardsList();
+		for(Map.Entry<String, Integer> entry : rewardsList.entrySet()) {
+			if(entry.getValue() !=0) return false; 
+		}
+		return true;
+	}
 }

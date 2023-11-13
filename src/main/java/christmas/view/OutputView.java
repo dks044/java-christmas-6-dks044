@@ -4,6 +4,7 @@ import java.text.NumberFormat;
 import java.util.Map;
 
 import christmas.domain.order.Order;
+import christmas.domain.order.OrderService;
 import christmas.util.Util;
 
 public class OutputView {
@@ -37,6 +38,16 @@ public class OutputView {
 		System.out.println("<증정 메뉴>");
 		if(order.isGiftIncluded()) System.out.println("샴페인 1개");
 		if(!order.isGiftIncluded()) System.out.println("없음");
+	}
+	public static void printEventBenefitsDetails(Order order) {
+		System.out.println();
+		System.out.println("<혜택 내역>");
+		if(!OrderService.isDiscountEventEmpty(order)) {
+			for(Map.Entry<String, Integer> entry : order.getRewardsList().entrySet()) {
+				System.out.println(entry.getKey()+" "+entry.getValue());
+			}
+		}
+		if(OrderService.isDiscountEventEmpty(order)) System.out.println("없음");
 	}
 	
 }
