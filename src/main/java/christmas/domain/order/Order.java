@@ -51,7 +51,7 @@ public class Order {
 	public boolean isGiftIncluded() {
 		return isGiftIncluded;
 	}
-
+	
 	public void setGiftIncluded(boolean isGiftIncluded) {
 		this.isGiftIncluded = isGiftIncluded;
 	}

@@ -23,6 +23,7 @@ public class ChristmasController {
 		OutputView.printOrderMenuDetail(order);
 		OutputView.printOrderAmountPreDiscount(order);
 		OutputView.printGiftEventStatus(order);
+		OutputView.printEventBenefitsDetails(order);
 	}
 	
 	void run() {

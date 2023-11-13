@@ -128,4 +128,13 @@ public class OrderService {
 		}
 		return true;
 	}
+	public static int getTotalBenefitsAmount(Order order) {
+		int totalBenefitAmount = 0;
+		Map<String,Integer> rewardList = order.getRewardsList();
+		for(Map.Entry<String, Integer> entry : rewardList.entrySet()) {
+			totalBenefitAmount += entry.getValue();
+		}
+		return totalBenefitAmount;
+	}
+	
 }

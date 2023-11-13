@@ -49,5 +49,15 @@ public class OutputView {
 		}
 		if(OrderService.isDiscountEventEmpty(order)) System.out.println("없음");
 	}
+	public static void printTotalBenefitsAmount(Order order) {
+		System.out.println();
+		System.out.println("<총혜택 금액>");
+		if(OrderService.isDiscountEventEmpty(order)) System.out.println("0원");
+		if(!OrderService.isDiscountEventEmpty(order)) {
+			NumberFormat numberFormat = NumberFormat.getInstance();
+			String totalBenefitsAmount = numberFormat.format(OrderService.getTotalBenefitsAmount(order));
+			System.out.println("-"+totalBenefitsAmount+"원");
+		}
+	}
 	
 }
