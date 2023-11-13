@@ -16,6 +16,12 @@ public class OrderService {
 	private static final List<MenuEnumInterface> allMenuItems = new ArrayList<>();
 	private static final int CHRISTMAS_DAY_EVENT_START = 1;
 	private static final int CHRISTMAS_DAY_EVENT_END = 25;
+	private static final List<Integer> WEEKDAY = List.of(1,4,5,6,7,8,11,12,13,14,15,18,19,20,21,22,25,26,27,28,29);
+	private static final List<Integer> WEEKEND = List.of(2,3,9,10,16,17,23,24,31);
+	private static final List<Integer> SPECIAL_DAY = List.of(3,10,17,24,25,31); 
+	private static final List<String> DESSERT_ITEM_LIST = List.of("CHOCOLATE_CAKE","ICE_CREAM");
+	private static final List<String> MAIN_ITEM_LIST = List.of("T_BONE_STEAK","BBQ_RIBS","SEAFOOD_PASTA","CHRISTMAS_PASTA");
+	private static final int DISCOUNT_MONEY = 2023;
 	
     static {
         allMenuItems.addAll(Arrays.asList(Main.values()));
@@ -61,7 +67,19 @@ public class OrderService {
 			order.setRewardsList(rewardList);
 		}
 	}
+	//TODO: 평일할인(디저트 메뉴당 1개할인), 주말할인(메인메뉴당 1개할인), 특별할인(특정날짜- 1000원할인),증정 구현
 	
-	
+	public static void weekdayEvent(Order order) {
+		int eventDiscountMoney = 0;
+		Map<String,Integer> orderMenu = order.getOrderMenu();
+		Map<String,Integer> rewardList = order.getRewardsList();
+		if(WEEKDAY.contains(order.getVisitDay())) {
+			for(Map.Entry<String, Integer> entry : orderMenu.entrySet()) {
+				if(DESSERT_ITEM_LIST.contains(entry.getKey())) eventDiscountMoney += DISCOUNT_MONEY * entry.getValue();
+			}
+		}
+		rewardList.put("주말 할인:",eventDiscountMoney);
+		order.setRewardsList(rewardList);
+	}
 	
 }

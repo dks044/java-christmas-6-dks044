@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import christmas.domain.menu.Appetizer;
 
 public class MenuTest {
-	@DisplayName("Appetizer enum 테스트")
+	@DisplayName("Appetizer enum 기능 테스트")
 	@Test
 	void orderAppetizerItem() {
 		String orderItem = "MUSHROOM_SOUP";
