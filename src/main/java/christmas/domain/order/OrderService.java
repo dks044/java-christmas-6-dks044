@@ -11,6 +11,7 @@ import christmas.domain.menu.Beverage;
 import christmas.domain.menu.Dessert;
 import christmas.domain.menu.Main;
 import christmas.domain.menu.MenuEnumInterface;
+import christmas.util.Util;
 
 public class OrderService {
 	private static final List<MenuEnumInterface> allMenuItems = new ArrayList<>();
@@ -148,5 +149,14 @@ public class OrderService {
 		if(totalBenefitsAmount >= EVENT_BADGE_SANTA) eventBadge ="산타";
 		return eventBadge;
 	}
-	
+	public static Map<String,Integer> parseOrderMenuToKorName(Order order) {
+		Map<String,Integer> orderMenu = order.getOrderMenu();
+		for(Map.Entry<String, String> entry : Util.getTotalMenu().entrySet()) {
+			if(orderMenu.containsKey(entry.getValue())) {
+				orderMenu.put(entry.getKey(), orderMenu.get(entry.getValue()));
+				orderMenu.remove(entry.getValue());
+			}
+		}
+		return orderMenu;
+	}
 }

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import christmas.domain.order.Order;
+
 public class Util {
 	
 	private static final Map<String, String> APPETIZER 
@@ -57,4 +59,5 @@ public class Util {
 		}
 		return inputData;
 	}
+
 }

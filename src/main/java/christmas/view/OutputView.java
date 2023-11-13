@@ -16,14 +16,11 @@ public class OutputView {
 		System.out.println("12월 "+visitDay+"일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
 	}
 	private static void printOrderMenuDetail(Order order) {
-		System.out.println();
-		System.out.println("<주문 메뉴>");
-		Map<String,Integer> orderMenu = order.getOrderMenu();
-		for(Map.Entry<String, Integer> entry : orderMenu.entrySet()) {
-			if(Util.getTotalMenu().containsKey(entry.getKey())) {
-				System.out.println(entry.getKey()+" "+entry.getValue()+"개");
-			}
-		}
+	    System.out.println("\n<주문 메뉴>");
+	    Map<String, Integer> orderMenu = OrderService.parseOrderMenuToKorName(order);
+	    for(Map.Entry<String, Integer> entry : orderMenu.entrySet()) {
+	    	System.out.println(entry.getKey()+" "+entry.getValue()+"개");
+	    }
 	}
 	private static void printOrderAmountPreDiscount(Order order) {
 		System.out.println();
