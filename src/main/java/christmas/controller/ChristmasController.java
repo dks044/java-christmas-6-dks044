@@ -22,7 +22,7 @@ public class ChristmasController {
 		OutputView.printOrderDetail(order);
 	}
 	
-	void run() {
+	public static void run() {
 		Order order = createPlayerOrder();
 		submitOrder(order);
 		showOrderDetails(order);
