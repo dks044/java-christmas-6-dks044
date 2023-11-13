@@ -1,6 +1,6 @@
 package christmas.domain.menu;
 
-public enum Main {
+public enum Main implements MenuEnumInterface{
 	T_BONE_STEAK(55000),
 	BBQ_RIBS(54000),
 	SEAFOOD_PASTA(35000),
@@ -13,6 +13,15 @@ public enum Main {
 	}
 	
 	public int getPrice() {
+		return price;
+	}
+	@Override
+	public String getName() {
+		return this.name();
+	}
+
+	@Override
+	public int getValue() {
 		return price;
 	}
 }

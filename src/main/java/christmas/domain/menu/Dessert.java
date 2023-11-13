@@ -1,6 +1,6 @@
 package christmas.domain.menu;
 
-public enum Dessert {
+public enum Dessert implements MenuEnumInterface{
 	CHOCOLATE_CAKE(15000),
 	ICE_CREAM(5000);
 	
@@ -11,6 +11,16 @@ public enum Dessert {
 	}
 
 	public int getPrice() {
+		return price;
+	}
+
+	@Override
+	public String getName() {
+		return this.name();
+	}
+
+	@Override
+	public int getValue() {
 		return price;
 	}
 }
