@@ -70,7 +70,6 @@ public class Validate {
 		if(orderTotalCount>MAX_ORDER_LIMIT) throw new  IllegalArgumentException(ORDER_LIMIT_EXCEEDED);
 	}
 	
-	//TODO: 테스트코드 구현
 	public static void checkUniqueOrderItem(String inputData) {
 		String[] inputDatas = Arrays.stream(inputData.split(","))
                 .map(s -> s.replaceAll("[\\d-]", ""))

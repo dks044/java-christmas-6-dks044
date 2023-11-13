@@ -50,4 +50,13 @@ public class ValidateTest {
 		assertDoesNotThrow(()->Validate.checkOrderCountRange(maxTwentyData));
 	}
 	
+	@DisplayName("메뉴 주문에 중복이 포함되면 오류가 발생한다.")
+	@Test
+	void checkUniqueOrderItemTest() {
+		String normalData = Util.parseInputDataToEngName("양송이수프-1,타파스-1,아이스크림-1,레드와인-1,티본스테이크-1");
+		String notDistinctData = Util.parseInputDataToEngName("양송이수프-1,양송이수프-1,아이스크림-1,레드와인-1,아이스크림-1");
+		assertThrows(IllegalArgumentException.class, ()->Validate.checkUniqueOrderItem(notDistinctData));
+		assertDoesNotThrow(()->Validate.checkUniqueOrderItem(normalData));
+	}
+	
 }
