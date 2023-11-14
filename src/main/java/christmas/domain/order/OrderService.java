@@ -2,9 +2,9 @@ package christmas.domain.order;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import christmas.domain.menu.Appetizer;
 import christmas.domain.menu.Beverage;
@@ -36,29 +36,24 @@ public class OrderService {
         allMenuItems.addAll(Arrays.asList(Beverage.values()));
     }
     
-	public static void appendOrderMenu(Order order,String memuInputData) {
-		Map<String,Integer> appendOrderMenu = new HashMap<>();
-		String[] memuInputDatas = memuInputData.split(",");
-		StringBuilder menuName = new StringBuilder(); 
-		StringBuilder menuCount = new StringBuilder();
-		for(String inputData : memuInputDatas) {
-			inputData = inputData.replaceAll("-", "");
-			for(char inputDataWord : inputData.toCharArray()) {
-				if(!Character.isDigit(inputDataWord)) menuName.append(inputDataWord);
-				if(Character.isDigit(inputDataWord)) menuCount.append(inputDataWord);
-			}
-			appendOrderMenu.put(menuName.toString(), Integer.parseInt(menuCount.toString()));
-			menuName.setLength(0); menuCount.setLength(0);
-		}
-		order.setOrderMenu(appendOrderMenu);
-	}
+    public static void appendOrderMenu(Order order, String menuInputData) {
+        Map<String, Integer> orderMenu = Arrays.stream(menuInputData.split(","))
+            .map(input -> input.replaceAll("-", ""))
+            .collect(Collectors.toMap(
+                input -> input.replaceAll("\\d", ""),
+                input -> Integer.parseInt(input.replaceAll("\\D", ""))
+            ));
+
+        order.setOrderMenu(orderMenu);
+    }
+
 	
 	
 	public static int getTotalOrderMoney(Order order) {
 		int totalOrderMoney =0;
 		for(Map.Entry<String, Integer> entry : order.getOrderMenu().entrySet()) {
 			for(MenuEnumInterface menuItem : allMenuItems) {
-				if(menuItem.getName().equals(entry.getKey())) totalOrderMoney += (menuItem.getValue() * entry.getValue());
+				if(menuItem.getName().equals(entry.getKey())) totalOrderMoney += (menuItem.getPrice() * entry.getValue());
 			}
 		}
 		return totalOrderMoney;

@@ -10,20 +10,14 @@ public enum Appetizer implements MenuEnumInterface{
 	Appetizer(int price){
 		this.price = price;
 	}
-	
-	public int getPrice() {
-		return price;
-	}
-
-
-	@Override
-	public int getValue() {
-		return price;
-	}
 
 	@Override
 	public String getName() {
 		return this.name();
 	}
 	
+	@Override
+	public int getPrice() {
+		return price;
+	}
 }

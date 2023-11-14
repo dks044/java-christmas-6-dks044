@@ -12,12 +12,14 @@ public class ChristmasController {
 		Order order = new Order(InputView.promptForVisitDate());
 		return order;
 	}
+	
 	private static void submitOrder(Order order) {
 		String inputMenuData = InputView.promptForOrderMenu();
 		OrderService.appendOrderMenu(order, inputMenuData);
 		order.setOrderMoney(OrderService.getTotalOrderMoney(order));
 		OrderService.totalDiscountEvent(order);
 	}
+	
 	private static void showOrderDetails(Order order) {
 		OutputView.printOrderDetail(order);
 	}
@@ -27,4 +29,5 @@ public class ChristmasController {
 		submitOrder(order);
 		showOrderDetails(order);
 	}
+	
 }

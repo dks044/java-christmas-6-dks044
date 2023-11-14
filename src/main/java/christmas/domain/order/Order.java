@@ -14,7 +14,7 @@ public class Order {
 	private boolean isGiftIncluded;
 	
 	private Map<String,Integer> rewardsList = new LinkedHashMap<>();
-	
+
 	public Order(int visitDay){
 		this.visitDay = visitDay;
 		this.rewardsList.put("크리스마스 디데이 할인:", 0);

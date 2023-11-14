@@ -10,17 +10,14 @@ public enum Dessert implements MenuEnumInterface{
 		this.price = price;
 	}
 
-	public int getPrice() {
-		return price;
-	}
-
 	@Override
 	public String getName() {
 		return this.name();
 	}
 
 	@Override
-	public int getValue() {
+	public int getPrice() {
 		return price;
 	}
+	
 }

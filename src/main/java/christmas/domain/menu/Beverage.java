@@ -11,9 +11,6 @@ public enum Beverage implements MenuEnumInterface{
 		this.price = price;
 	}
 	
-	public int getPrice() {
-		return price;
-	}
 
 	@Override
 	public String getName() {
@@ -21,9 +18,8 @@ public enum Beverage implements MenuEnumInterface{
 	}
 
 	@Override
-	public int getValue() {
+	public int getPrice() {
 		return price;
 	}
 	
-
 }
