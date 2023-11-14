@@ -38,9 +38,10 @@ public class OutputView {
 	}
 	private static void printEventBenefitsDetails(Order order) {
 		System.out.println("\n<혜택 내역>");
+		NumberFormat numberFormat = NumberFormat.getInstance();
 		if(!OrderService.isDiscountEventEmpty(order)) {
 			for(Map.Entry<String, Integer> entry : order.getRewardsList().entrySet()) {
-				if(entry.getValue() != 0) System.out.println(entry.getKey()+" "+entry.getValue());
+				if(entry.getValue() != 0) System.out.println(entry.getKey()+" "+"-"+numberFormat.format(entry.getValue())+"원");
 			}
 		}
 		if(OrderService.isDiscountEventEmpty(order)) System.out.println("없음");
