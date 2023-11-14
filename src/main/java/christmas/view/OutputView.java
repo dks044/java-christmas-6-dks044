@@ -38,7 +38,7 @@ public class OutputView {
 		System.out.println("\n<혜택 내역>");
 		if(!OrderService.isDiscountEventEmpty(order)) {
 			for(Map.Entry<String, Integer> entry : order.getRewardsList().entrySet()) {
-				System.out.println(entry.getKey()+" "+entry.getValue());
+				if(entry.getValue() != 0) System.out.println(entry.getKey()+" "+entry.getValue());
 			}
 		}
 		if(OrderService.isDiscountEventEmpty(order)) System.out.println("없음");
