@@ -131,7 +131,7 @@ public class OrderService {
 		int totalBenefitAmount = 0;
 		Map<String,Integer> rewardList = order.getRewardsList();
 		for(Map.Entry<String, Integer> entry : rewardList.entrySet()) {
-			if(!entry.getKey().equals("증정 이벤트:")) totalBenefitAmount += entry.getValue();
+			totalBenefitAmount += entry.getValue();
 		}
 		return totalBenefitAmount;
 	}

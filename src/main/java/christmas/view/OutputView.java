@@ -8,6 +8,8 @@ import christmas.domain.order.OrderService;
 import christmas.util.Util;
 
 public class OutputView {
+	private static final int GIFT_EVENT_BENEFIT = 25000;
+	
 	public static void printWelcomeMessage() {
 		System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
 	}
@@ -59,6 +61,9 @@ public class OutputView {
 		if(OrderService.isDiscountEventEmpty(order)) orderAmountPostDiscount = order.getOrderMoney();
 		if(!OrderService.isDiscountEventEmpty(order)) {
 			orderAmountPostDiscount = order.getOrderMoney() - OrderService.getTotalBenefitsAmount(order);
+		}
+		if(!OrderService.isDiscountEventEmpty(order) && order.isGiftIncluded()) {
+			orderAmountPostDiscount = order.getOrderMoney() - OrderService.getTotalBenefitsAmount(order) + GIFT_EVENT_BENEFIT;
 		}
 		NumberFormat numberFormat = NumberFormat.getInstance();
 		System.out.println(numberFormat.format(orderAmountPostDiscount)+"원");
