@@ -11,7 +11,7 @@ public class Order {
 	
 	private int orderMoney;
 	
-	private boolean isGiftIncluded;
+	private boolean isGiftIncluded = false;
 	
 	private Map<String,Integer> rewardsList = new LinkedHashMap<>();
 
