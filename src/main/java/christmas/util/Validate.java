@@ -63,14 +63,14 @@ public class Validate {
 	}
 
 	public static void checkOrderCountRange(String inputData) {
-		int orderTotalCount =0;
 		String[] inputDatas = inputData.split(",");
 		StringBuilder num = new StringBuilder();
 		for(String data : inputDatas) {
 			for(char dataWord  : data.toCharArray()) {
-				if(Character.isDigit(dataWord)) orderTotalCount += dataWord - '0';
+				if(Character.isDigit(dataWord)) num.append(dataWord);
 			}
 		}
+		int orderTotalCount = Integer.parseInt(num.toString());
 		if(orderTotalCount>MAX_ORDER_LIMIT) throw new  IllegalArgumentException(ORDER_LIMIT_EXCEEDED);
 	}
 	
